@@ -77,6 +77,13 @@ border-radius:5px;
 text-align:left;
 }
 
+#preview{
+width:100%;
+margin-top:10px;
+border-radius:8px;
+display:none;
+}
+
 </style>
 </head>
 
@@ -90,6 +97,12 @@ text-align:left;
 <input type="text" placeholder="Enter your location">
 
 <input type="text" placeholder="Destination type (mountains, beach, city)">
+
+<!-- Upload Image -->
+<input type="file" id="imageUpload" accept="image/*">
+
+<!-- Image Preview -->
+<img id="preview">
 
 <button onclick="showTrips()">Plan Trip</button>
 
@@ -128,6 +141,18 @@ text-align:left;
 function showTrips(){
 document.getElementById("results").style.display="block";
 }
+
+const upload = document.getElementById("imageUpload");
+const preview = document.getElementById("preview");
+
+upload.addEventListener("change", function(){
+const file = this.files[0];
+
+if(file){
+preview.src = URL.createObjectURL(file);
+preview.style.display = "block";
+}
+});
 
 </script>
 
